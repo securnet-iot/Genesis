@@ -4,7 +4,7 @@ ifndef ROOT_PATH
 endif
 
 ifndef PLATFORM
-	PLATFORM = Linux
+	PLATFORM = Raspbian
 endif
 
 ifndef DEBUG
@@ -23,7 +23,7 @@ $(call PRINT_INFO, PLATFORM)
 $(call PRINT_INFO, BUILD)
 $(info **********************************************)
 
-TOOLCHAIN_ID := linux
+TOOLCHAIN_ID := raspbian
 TOOLCHAIN_PATH := $(ROOT_PATH)/toolchain/$(TOOLCHAIN_ID)
 TOOLCHAIN_SYSROOT_PATH := 
 
