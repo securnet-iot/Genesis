@@ -1,3 +1,3 @@
-ROOT_PATH = /home/pi/HariProjects/GitHub/Genesis/
+ROOT_PATH := /home/pi/HariProjects/GitHub/Genesis
 
-$(info $(ROOT_PATH))
+$(info ROOT_PATH=$(ROOT_PATH))

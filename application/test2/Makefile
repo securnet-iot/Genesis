@@ -7,4 +7,4 @@ clean:
 	make -r -s -f ../../library/boilermake/Makefile clean
 
 run: all
-	./bin/test1_app.exe
+	./bin/test2_app.exe
