@@ -1,4 +1,4 @@
-#ROOT_PATH = /home/pi/HariProjects/GitHub/Genesis/
+ROOT_PATH = ./../..
 
 INCDIR += $(DIR)/inc
 
