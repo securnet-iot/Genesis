@@ -1,7 +1,9 @@
-ROOT_PATH = ./../..
+#ROOT_PATH = ./../..
+#ROOT_PATH = $(subst D:/,/D/,$(subst C:/,/C/,$(subst \,/,$(CURDIR))))/../..
+ROOT_PATH = $(CURDIR)/../..
 
 INCDIR += $(DIR)/inc
 
 SUBMAKEFILES := \
-  $(ROOT_PATH)/toolchain/raspbian/main.mk \
+  $(ROOT_PATH)/toolchain/windows/main.mk \
   test1.mk
