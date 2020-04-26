@@ -105,6 +105,14 @@ define CANONICAL_PATH
 $(patsubst ${CURDIR}/%,%,$(abspath ${1}))
 endef
 
+# COMPILE_ASM_CMDS - Commands for compiling asm source code.
+define COMPILE_ASM_CMDS
+	@mkdir -p $(dir $@)
+	@echo -e "\033[0;32mASM $<\033[0m"
+	$(strip ${CC} -o $@ -c ${CFLAGS} ${SRC_CFLAGS} ${INCDIRS} \
+	    ${SRC_INCDIRS} ${SRC_DEFS} ${DEFS} $<)
+endef
+
 # COMPILE_C_CMDS - Commands for compiling C source code.
 define COMPILE_C_CMDS
 	@mkdir -p $(dir $@)
@@ -340,9 +348,10 @@ ifneq "${MIN_MAKE_VERSION}" "$(call MIN,${MIN_MAKE_VERSION},${MAKE_VERSION})"
 endif
 
 # Define the source file extensions that we know how to handle.
+ASM_SRC_EXTS := %.S %.s
 C_SRC_EXTS := %.c
 CXX_SRC_EXTS := %.C %.cc %.cp %.cpp %.CPP %.cxx %.c++
-ALL_SRC_EXTS := ${C_SRC_EXTS} ${CXX_SRC_EXTS}
+ALL_SRC_EXTS := ${ASM_SRC_EXTS} ${C_SRC_EXTS} ${CXX_SRC_EXTS}
 
 # Initialize global variables.
 ALL_TGTS :=
@@ -353,6 +362,8 @@ TGT_STACK :=
 
 # Include the main user-supplied submakefile. This also recursively includes
 # all other user-supplied submakefiles.
+#ROOT_PATH = $(PWD)/../../..
+ROOT_PATH = $(CURDIR)/../../..
 $(eval $(call INCLUDE_SUBMAKEFILE,main.mk))
 
 # Perform post-processing on global variables as needed.
@@ -367,6 +378,12 @@ all: $(addprefix ${TARGET_DIR}/,${ALL_TGTS})
 # Add a new target rule for each user-defined target.
 $(foreach TGT,${ALL_TGTS},\
   $(eval $(call ADD_TARGET_RULE,${TGT})))
+
+# Add pattern rule(s) for creating compiled object code from asm source.
+$(foreach TGT,${ALL_TGTS},\
+  $(foreach EXT,${ASM_SRC_EXTS},\
+    $(eval $(call ADD_OBJECT_RULE,${BUILD_DIR}/$(call CANONICAL_PATH,${TGT}),\
+             ${EXT},$${COMPILE_ASM_CMDS}))))
 
 # Add pattern rule(s) for creating compiled object code from C source.
 $(foreach TGT,${ALL_TGTS},\
