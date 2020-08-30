@@ -1,11 +1,7 @@
 {
 	"folders": [{
-			"path": "..\\..\\.."
-		},
-		{
-			"path": "..\\..\\..\\..\\..\\..\\code"
-		}
-	],
+		"path": "/home/pi/HariProjects/GitHub/Genesis"
+	}],
 	"settings": {
 		"editor.cursorStyle": "line",
 		"C_Cpp.clang_format_fallbackStyle": "Google",
