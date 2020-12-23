@@ -107,8 +107,8 @@ endef
 
 # COMPILE_ASM_CMDS - Commands for compiling asm source code.
 define COMPILE_ASM_CMDS
-	@mkdir -p $(dir $@)
-	@echo -e "\033[0;32mASM $<\033[0m"
+	@mkdir -p $(dir $@)0
+	@echo -e "\033[0;34mASM $<\033[0m"
 	$(strip ${CC} -o $@ -c ${CFLAGS} ${SRC_CFLAGS} ${INCDIRS} \
 	    ${SRC_INCDIRS} ${SRC_DEFS} ${DEFS} $<)
 endef
@@ -116,6 +116,7 @@ endef
 # COMPILE_C_CMDS - Commands for compiling C source code.
 define COMPILE_C_CMDS
 	@mkdir -p $(dir $@)
+	@echo -e "\033[0;34mCC $<\033[0m"
 	$(strip ${CC} -o $@ -c -MD ${CFLAGS} ${SRC_CFLAGS} ${INCDIRS} \
 	    ${SRC_INCDIRS} ${SRC_DEFS} ${DEFS} $<)
 	@cp ${@:%$(suffix $@)=%.d} ${@:%$(suffix $@)=%.P}; \
@@ -128,6 +129,7 @@ endef
 # COMPILE_CXX_CMDS - Commands for compiling C++ source code.
 define COMPILE_CXX_CMDS
 	@mkdir -p $(dir $@)
+	@echo -e "\033[0;34mCXX $<\033[0m"
 	$(strip ${CXX} -o $@ -c -MD ${CXXFLAGS} ${SRC_CXXFLAGS} ${INCDIRS} \
 	    ${SRC_INCDIRS} ${SRC_DEFS} ${DEFS} $<)
 	@cp ${@:%$(suffix $@)=%.d} ${@:%$(suffix $@)=%.P}; \
@@ -362,7 +364,6 @@ TGT_STACK :=
 
 # Include the main user-supplied submakefile. This also recursively includes
 # all other user-supplied submakefiles.
-#ROOT_PATH = $(PWD)/../../..
 ROOT_PATH = $(CURDIR)/../../..
 $(eval $(call INCLUDE_SUBMAKEFILE,main.mk))
 
@@ -405,3 +406,6 @@ $(foreach TGT,${ALL_TGTS},\
 # Include generated rules that define additional (header) dependencies.
 $(foreach TGT,${ALL_TGTS},\
   $(eval -include ${${TGT}_DEPS}))
+
+# Invoke make with argument VERBOSE=1 to see exact compiler toolchain commands.
+$(VERBOSE).SILENT:
