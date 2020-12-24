@@ -4,5 +4,5 @@
 /* ------------------------------------------------------------------------ */
 /*  Main entry point */
 int main () {
-  printf("Hello Hari\n");
+  printf("Hello Hari! Are you ready to run the executable?\n");
 }
