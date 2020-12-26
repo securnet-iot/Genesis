@@ -3,7 +3,7 @@ ifndef ROOT_PATH
 endif
 
 ifndef PLATFORM
-	PLATFORM = Windows
+	PLATFORM = Raspberry Pi
 endif
 
 ifndef DEBUG

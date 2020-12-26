@@ -5,7 +5,7 @@ $NATIVE_TOOLS_BIN_PATH = $NATIVE_UTILS_BIN_PATH
 $RASP_UTILS_BIN_PATH = $NATIVE_UTILS_BIN_PATH
 $RASP_TOOLS_BIN_PATH = $env:GENESIS_TOOLS_PATH + "\rasp-gcc\bin"
 
-function GenesisUtilsPath ( $platform, $package ) {
+function GenesisToolSetPath ( $platform, $package ) {
   $temp_var = 0
 
   # Remove any existing items with same name from PATH
@@ -41,7 +41,7 @@ function GenesisUtilsPath ( $platform, $package ) {
   }
 }
 
-function GenesisUtilsPathRemove ( $platform ) {
+function GenesisToolSetPathRemove ( $platform ) {
   $temp_var = 0
   # Remove any existing items with same name from PATH
   If ( $platform -eq "native" ) {

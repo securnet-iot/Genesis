@@ -1,15 +1,15 @@
-#ifndef HAL_ACTUATOR_INTERFACE_H
-#define HAL_ACTUATOR_INTERFACE_H
+#ifndef HAL_SENSOR_INTERFACE_H
+#define HAL_SENSOR_INTERFACE_H
 
 namespace hal {
 
 template <typename T>
-class ActuatorInterface {
+class SensorInterface {
  public:
   using ParamType T;
 
-  virtual ActuatorInterface();
-  ~ActuatorInterface();
+  virtual SensorInterface();
+  ~SensorInterface();
 
   virtual ParamType GetValue(void) = 0;
   virtual ParamType GetMaxValue(void) = 0;
@@ -18,8 +18,8 @@ class ActuatorInterface {
 };
 
 template <typename T>
-inline ActuatorInterface<T>::~ActuatorInterface() {}
+inline SensorInterface<T>::~SensorInterface() {}
 
 }  // namespace hal
 
-#endif /* HAL_ACTUATOR_INTERFACE_H */
+#endif /* HAL_SENSOR_INTERFACE_H */
