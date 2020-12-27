@@ -4,5 +4,5 @@
 /* ------------------------------------------------------------------------ */
 /*  Main entry point */
 int main () {
-  printf("Hello Hari\n");
+  printf("Hello Pranav\n");
 }
