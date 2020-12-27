@@ -5,4 +5,5 @@
 /*  Main entry point */
 int main () {
   printf("Hello Pranav\n");
+  printf("Hello Sushanth\n");
 }
