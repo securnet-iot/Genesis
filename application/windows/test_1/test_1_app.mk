@@ -15,14 +15,14 @@ TGT_LDLIBS  := $(addprefix -l,$(TGT_DEPLIBS))
 TGT_POSTCLEAN := rm -rf $(TARGET_DIR) $(BUILD_DIR)
 
 TGT_POSTMAKE := \
-  $(OBJCPY) -O srec --gap-fill=0 $(TARGET_DIR)/$(APP_ID).exe $(TARGET_DIR)/$(APP_ID).mot; \
-  $(OBJCPY) -O binary --gap-fill=0 $(TARGET_DIR)/$(APP_ID).exe $(TARGET_DIR)/$(APP_ID).bin; \
-  $(SIZE) $(TARGET_DIR)/$(APP_ID).exe
+	$(OBJCPY) -O srec --gap-fill=0 $(TARGET_DIR)/$(APP_ID).exe $(TARGET_DIR)/$(APP_ID).mot; \
+	$(OBJCPY) -O binary --gap-fill=0 $(TARGET_DIR)/$(APP_ID).exe $(TARGET_DIR)/$(APP_ID).bin; \
+	$(SIZE) $(TARGET_DIR)/$(APP_ID).exe
 
 TGT_PREREQS := $(addsuffix .a,$(addprefix lib,$(TGT_DEPLIBS)))
 
 INCDIRS += \
-  $(DIR)/inc
+	$(DIR)/inc
 
 SOURCES := \
-  $(wildcard ./src/*.cpp)
+	$(wildcard ./src/*.cpp)

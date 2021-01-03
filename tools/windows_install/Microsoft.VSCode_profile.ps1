@@ -1,10 +1,9 @@
 #!/bin/sh
 
-$NATIVE_UTILS_BIN_PATH = $env:GENESIS_TOOLS_PATH + "\msys64\usr\bin"
-$NATIVE_TOOLS_BIN_PATH = $NATIVE_UTILS_BIN_PATH
-$RASP_UTILS_BIN_PATH = $NATIVE_UTILS_BIN_PATH
+$NATIVE_UTILS_BIN_PATH = $env:GENESIS_TOOLS_PATH + "\mingw-w64\mingw32\bin"
+$NATIVE_TOOLS_BIN_PATH = $env:GENESIS_TOOLS_PATH + "\mingw-w64\mingw32\bin"
+$RASP_UTILS_BIN_PATH = $env:GENESIS_TOOLS_PATH + "\msys64\usr\bin"
 $RASP_TOOLS_BIN_PATH = $env:GENESIS_TOOLS_PATH + "\rasp-gcc\bin"
-$OPENCV_LIBS_PATH = $env:GENESIS_TOOLS_PATH + "\msys64\mingw64\bin"
 
 function GenesisToolSetPath ( $platform, $package ) {
   $temp_var = 0
@@ -12,13 +11,13 @@ function GenesisToolSetPath ( $platform, $package ) {
   # Remove any existing items with same name from PATH
   $Env:Path = ($Env:path.Split(';') | Where-Object { $_ -ne $NATIVE_UTILS_BIN_PATH }) -join ';'
   $Env:Path = ($Env:path.Split(';') | Where-Object { $_ -ne $NATIVE_TOOLS_BIN_PATH }) -join ';'
+
   $Env:Path = ($Env:path.Split(';') | Where-Object { $_ -ne $RASP_UTILS_BIN_PATH }) -join ';'
   $Env:Path = ($Env:path.Split(';') | Where-Object { $_ -ne $RASP_TOOLS_BIN_PATH }) -join ';'
-  $Env:Path = ($Env:path.Split(';') | Where-Object { $_ -ne $OPENCV_LIBS_PATH }) -join ';'
 
   If ( $platform -eq "native" ) {
     $env:BUILD_SYSTEM = "powershell"
-    $Env:Path += ";" + $NATIVE_UTILS_BIN_PATH + ";" + $NATIVE_TOOLS_BIN_PATH  + ";" + $OPENCV_LIBS_PATH
+    $Env:Path += ";" + $NATIVE_UTILS_BIN_PATH + ";" + $NATIVE_TOOLS_BIN_PATH
   }
   ElseIf ( $platform -eq "rasp" ) {
     $env:BUILD_SYSTEM = "powershell"

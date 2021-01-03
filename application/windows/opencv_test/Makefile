@@ -1,11 +1,12 @@
-CC = /D/Misc/GenesisTools/mingw-w64-hk-posix/mingw32/bin/g++.exe
+# CC = /D/Misc/GenesisTools/mingw-w64/mingw32/bin/g++.exe
+CC = "D:/Misc/GenesisTools/mingw-w64/mingw32/bin/g++.exe"
 CFLAGS = -g -Wall
 
 SRCS = src/main_test.cpp
 PROG = opencv_exe.exe
 
-OPENCV := -I"D:\Misc\GenesisTools\opencv_lib\include"
-OPENCV += -L"D:\Misc\GenesisTools\opencv_lib\x64\mingw\lib"
+OPENCV := -I"D:\Misc\GenesisTools\opencv_native\include"
+OPENCV += -L"D:\Misc\GenesisTools\opencv_native\x64\mingw\lib"
 OPENCV += -lopencv_aruco451
 OPENCV += -lopencv_highgui451
 OPENCV += -lopencv_saliency451
@@ -56,13 +57,13 @@ OPENCV += -lopencv_reg451
 OPENCV += -lopencv_xphoto451
 OPENCV += -lopencv_hfs451
 OPENCV += -lopencv_rgbd451
-# OPENCV += -lopencv_videoio_ffmpeg451
 OPENCV += -lm -lpthread
-# -lz
-#  -flto
 
 $(PROG) : $(SRCS)
 	$(CC) $(CFLAGS) -o $(PROG) $(SRCS) $(OPENCV)
+
+all:
+	$(PROG)
 
 
 # g++ "-ID:\\Misc\\GenesisTools\\opencv_lib\\include" -O0 -g3 -Wall -c -fmessage-length=0 -o HK_Test_3.o "..\\HK_Test_3.cpp" 

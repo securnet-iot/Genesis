@@ -365,7 +365,7 @@ TGT_STACK :=
 # Include the main user-supplied submakefile. This also recursively includes
 # all other user-supplied submakefiles.
 ROOT_PATH = $(CURDIR)/../../..
-$(eval $(call INCLUDE_SUBMAKEFILE,main.mk))
+$(eval $(call INCLUDE_SUBMAKEFILE, main.mk))
 
 # Perform post-processing on global variables as needed.
 DEFS := $(addprefix -D,${DEFS})
