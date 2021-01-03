@@ -22,7 +22,7 @@ int main() {
   }
 
   for (;;) {
-  Mat frame;
+    Mat frame;
     cap >> frame;
     imshow("Wedcam Frame", frame);
 
