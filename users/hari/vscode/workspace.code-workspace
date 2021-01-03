@@ -2,7 +2,12 @@
 	"folders": [
 		{
 			"path": "..\\..\\.."
+		},
+		{
+			"path": "..\\..\\..\\..\\GenesisTools"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"editor.formatOnPaste": true
+	}
 }
