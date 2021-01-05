@@ -1,11 +1,11 @@
 #include <iostream>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/opencv.hpp>
+#include <opencv2/video.hpp>
+#include <opencv2/videoio/videoio.hpp>
 
-#include "opencv2/highgui/highgui.hpp"
-#include "opencv2/imgproc/imgproc.hpp"
-#include "opencv2/opencv.hpp"
-#include "opencv2/video.hpp"
-#include "opencv2/videoio/videoio.hpp"
+// Run .exe in DOS Command Line Terminal window CMD
 
 using namespace cv;
 
