@@ -1,12 +1,12 @@
 CC=g++
 
-CFLAGS = -std=c++17 -W -p -g -Wall -pg
+CFLAGS = -std=c++17 -W -p -g -Wall -pg -flto -fexceptions
 
 SRCS = src/main.cpp
 PROG = opencv_exe.exe
 
-OPENCV := -I"D:\Misc\GenesisTools\msys64\mingw64\include\opencv4"
-OPENCV += -L"D:\Misc\GenesisTools\msys64\mingw64\lib"
+OPENCV := -I$(GENESIS_TOOLS_PATH)\msys64\mingw64\include\opencv4
+OPENCV += -L$(GENESIS_TOOLS_PATH)\msys64\mingw64\lib
 OPENCV += -lopencv_aruco
 OPENCV += -lopencv_highgui
 OPENCV += -lopencv_saliency
