@@ -43,4 +43,4 @@ LDFLAGS += $(TOOLCHAIN_COMMON_FLAGS)
 TARGET := libtchain_$(TCHAIN_ID).a
 
 SOURCES := \
-  src/tchain.c
+	src/tchain.c
