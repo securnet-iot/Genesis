@@ -1,6 +1,7 @@
 APP_ID := test_1_app
 
-TGT_DEPLIBS = tchain_$(TCHAIN_ID)
+TGT_DEPLIBS = tchain_$(TCHAIN_ID) $(OPENCV_ID)
+TGT_DEPLIBS_PATH = $(APP_DEPLIBS_PATH)
 
 TARGET := $(APP_ID).exe
 TARGET_DIR := bin

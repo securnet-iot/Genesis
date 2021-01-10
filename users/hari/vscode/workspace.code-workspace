@@ -2,7 +2,14 @@
 	"folders": [
 		{
 			"path": "..\\..\\.."
+		},
+		{
+			"path": "..\\..\\..\\..\\GenesisTools"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"editor.formatOnPaste": true,
+		"editor.formatOnSave": true,
+		"terminal.explorerKind": "external"
+	}
 }

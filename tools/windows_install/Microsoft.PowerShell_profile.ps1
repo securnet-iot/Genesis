@@ -1,9 +1,13 @@
 #!/bin/sh
 
 $NATIVE_UTILS_BIN_PATH = $env:GENESIS_TOOLS_PATH + "\msys64\usr\bin"
-$NATIVE_TOOLS_BIN_PATH = $NATIVE_UTILS_BIN_PATH
-$RASP_UTILS_BIN_PATH = $NATIVE_UTILS_BIN_PATH
+$NATIVE_TOOLS_BIN_PATH = $env:GENESIS_TOOLS_PATH + "\msys64\usr\bin"
+# $NATIVE_OPENCV_BIN_PATH = $env:GENESIS_TOOLS_PATH + "\opencv_vs_x86\x64\vc16\bin"
+$NATIVE_OPENCV_BIN_PATH = $env:GENESIS_TOOLS_PATH + "\msys64\mingw64\bin"
+
+$RASP_UTILS_BIN_PATH = $env:GENESIS_TOOLS_PATH + "\msys64\usr\bin"
 $RASP_TOOLS_BIN_PATH = $env:GENESIS_TOOLS_PATH + "\rasp-gcc\bin"
+$RASP_OPENCV_BIN_PATH = $env:GENESIS_TOOLS_PATH + "\msys64\mingw64\bin"
 
 function GenesisToolSetPath ( $platform, $package ) {
   $temp_var = 0
@@ -11,16 +15,19 @@ function GenesisToolSetPath ( $platform, $package ) {
   # Remove any existing items with same name from PATH
   $Env:Path = ($Env:path.Split(';') | Where-Object { $_ -ne $NATIVE_UTILS_BIN_PATH }) -join ';'
   $Env:Path = ($Env:path.Split(';') | Where-Object { $_ -ne $NATIVE_TOOLS_BIN_PATH }) -join ';'
+  $Env:Path = ($Env:path.Split(';') | Where-Object { $_ -ne $NATIVE_OPENCV_BIN_PATH }) -join ';'
+
   $Env:Path = ($Env:path.Split(';') | Where-Object { $_ -ne $RASP_UTILS_BIN_PATH }) -join ';'
   $Env:Path = ($Env:path.Split(';') | Where-Object { $_ -ne $RASP_TOOLS_BIN_PATH }) -join ';'
+  $Env:Path = ($Env:path.Split(';') | Where-Object { $_ -ne $RASP_OPENCV_BIN_PATH }) -join ';'
 
   If ( $platform -eq "native" ) {
     $env:BUILD_SYSTEM = "powershell"
-    $Env:Path += ";" + $NATIVE_UTILS_BIN_PATH + ";" + $NATIVE_TOOLS_BIN_PATH  
+    $Env:Path += ";" + $NATIVE_UTILS_BIN_PATH + ";" + $NATIVE_TOOLS_BIN_PATH + ";" + $NATIVE_OPENCV_BIN_PATH
   }
   ElseIf ( $platform -eq "rasp" ) {
     $env:BUILD_SYSTEM = "powershell"
-    $Env:Path += ";" + $RASP_UTILS_BIN_PATH + ";" + $RASP_TOOLS_BIN_PATH
+    $Env:Path += ";" + $RASP_UTILS_BIN_PATH + ";" + $RASP_TOOLS_BIN_PATH + ";" + $RASP_OPENCV_BIN_PATH
   }
   Else {
     $temp_var = 1
@@ -47,10 +54,12 @@ function GenesisToolSetPathRemove ( $platform ) {
   If ( $platform -eq "native" ) {
     $Env:Path = ($Env:path.Split(';') | Where-Object { $_ -ne $NATIVE_UTILS_BIN_PATH }) -join ';'
     $Env:Path = ($Env:path.Split(';') | Where-Object { $_ -ne $NATIVE_TOOLS_BIN_PATH }) -join ';'
+    $Env:Path = ($Env:path.Split(';') | Where-Object { $_ -ne $NATIVE_OPENCV_BIN_PATH }) -join ';'
   }
   ElseIf ( $platform -eq "rasp" ) {
     $Env:Path = ($Env:path.Split(';') | Where-Object { $_ -ne $RASP_UTILS_BIN_PATH }) -join ';'
     $Env:Path = ($Env:path.Split(';') | Where-Object { $_ -ne $RASP_TOOLS_BIN_PATH }) -join ';'
+    $Env:Path = ($Env:path.Split(';') | Where-Object { $_ -ne $RASP_OPENCV_BIN_PATH }) -join ';'
   }
   Else {
     $temp_var = 1
