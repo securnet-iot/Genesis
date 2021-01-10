@@ -1,6 +1,8 @@
+export GIT_BRANCH=$(shell git for-each-ref --format='%(objectname) %(refname:short)' refs/heads | awk "/^$$(git rev-parse HEAD)/ {print \$$2}")
+
 CC=g++
 
-CFLAGS = -std=c++17 -W -p -g -Wall -pg -flto -fexceptions
+CFLAGS = -std=c++17 -W -p -g -Wall -pg -flto -fexceptions -DGIT_BRANCH=\"$(GIT_BRANCH)\"
 
 SRCS = src/main.cpp
 PROG = opencv_exe.exe
