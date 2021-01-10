@@ -5,8 +5,6 @@
 #include <opencv2/video.hpp>
 #include <opencv2/videoio/videoio.hpp>
 
-// Run .exe in DOS Command Line Terminal window CMD
-
 using namespace cv;
 
 int main() {
@@ -14,7 +12,7 @@ int main() {
   printf("I am here\n");
 
   printf("I am here [%d]\n", __LINE__);
-  VideoCapture cap(0);
+  VideoCapture cap(1);
 
   if (!cap.isOpened()) {
     printf("Can't open Camera\n");
