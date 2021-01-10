@@ -1,70 +1,67 @@
-# CC = /D/Misc/GenesisTools/mingw-w64/mingw32/bin/g++.exe
-CC = "D:/Misc/GenesisTools/mingw-w64/mingw32/bin/g++.exe"
-CFLAGS = -g -Wall
+CC=g++
 
-SRCS = src/main_test.cpp
+CFLAGS = -std=c++17 -W -p -g -Wall -pg -flto -fexceptions
+
+SRCS = src/main.cpp
 PROG = opencv_exe.exe
 
-OPENCV := -I"D:\Misc\GenesisTools\opencv_native\include"
-OPENCV += -L"D:\Misc\GenesisTools\opencv_native\x64\mingw\lib"
-OPENCV += -lopencv_aruco451
-OPENCV += -lopencv_highgui451
-OPENCV += -lopencv_saliency451
-OPENCV += -lopencv_bgsegm451
-OPENCV += -lopencv_img_hash451
-OPENCV += -lopencv_shape451
-OPENCV += -lopencv_bioinspired451
-OPENCV += -lopencv_imgcodecs451
-OPENCV += -lopencv_stereo451
-OPENCV += -lopencv_calib3d451
-OPENCV += -lopencv_imgproc451
-OPENCV += -lopencv_stitching451
-OPENCV += -lopencv_ccalib451
-OPENCV += -lopencv_intensity_transform451
-OPENCV += -lopencv_structured_light451
-OPENCV += -lopencv_core451
-OPENCV += -lopencv_line_descriptor451
-OPENCV += -lopencv_superres451
-OPENCV += -lopencv_datasets451
-OPENCV += -lopencv_mcc451
-OPENCV += -lopencv_surface_matching451
-OPENCV += -lopencv_dnn_objdetect451
-OPENCV += -lopencv_ml451
-OPENCV += -lopencv_text451
-OPENCV += -lopencv_dnn_superres451
-OPENCV += -lopencv_objdetect451
-OPENCV += -lopencv_tracking451
-OPENCV += -lopencv_dnn451
-OPENCV += -lopencv_optflow451
-OPENCV += -lopencv_video451
-OPENCV += -lopencv_dpm451
-OPENCV += -lopencv_phase_unwrapping451
-OPENCV += -lopencv_videoio451
-OPENCV += -lopencv_face451
-OPENCV += -lopencv_photo451
-OPENCV += -lopencv_videostab451
-OPENCV += -lopencv_features2d451
-OPENCV += -lopencv_plot451
-OPENCV += -lopencv_xfeatures2d451
-OPENCV += -lopencv_flann451
-OPENCV += -lopencv_quality451
-OPENCV += -lopencv_ximgproc451
-OPENCV += -lopencv_fuzzy451
-OPENCV += -lopencv_rapid451
-OPENCV += -lopencv_xobjdetect451
-OPENCV += -lopencv_gapi451
-OPENCV += -lopencv_reg451
-OPENCV += -lopencv_xphoto451
-OPENCV += -lopencv_hfs451
-OPENCV += -lopencv_rgbd451
-OPENCV += -lm -lpthread
+OPENCV := -I$(GENESIS_TOOLS_PATH)\msys64\mingw64\include\opencv4
+OPENCV += -L$(GENESIS_TOOLS_PATH)\msys64\mingw64\lib
+OPENCV += -lopencv_aruco
+OPENCV += -lopencv_highgui
+OPENCV += -lopencv_saliency
+OPENCV += -lopencv_bgsegm
+OPENCV += -lopencv_img_hash
+OPENCV += -lopencv_shape
+OPENCV += -lopencv_imgcodecs
+OPENCV += -lopencv_stereo
+OPENCV += -lopencv_calib3d
+OPENCV += -lopencv_imgproc
+OPENCV += -lopencv_stitching
+OPENCV += -lopencv_ccalib
+OPENCV += -lopencv_intensity_transform
+OPENCV += -lopencv_structured_light
+OPENCV += -lopencv_core
+OPENCV += -lopencv_line_descriptor
+OPENCV += -lopencv_superres
+OPENCV += -lopencv_datasets
+OPENCV += -lopencv_mcc
+OPENCV += -lopencv_surface_matching
+OPENCV += -lopencv_dnn_objdetect
+OPENCV += -lopencv_ml
+OPENCV += -lopencv_text
+OPENCV += -lopencv_dnn_superres
+OPENCV += -lopencv_objdetect
+OPENCV += -lopencv_tracking
+OPENCV += -lopencv_dnn
+OPENCV += -lopencv_optflow
+OPENCV += -lopencv_video
+OPENCV += -lopencv_dpm
+OPENCV += -lopencv_phase_unwrapping
+OPENCV += -lopencv_videoio
+OPENCV += -lopencv_face
+OPENCV += -lopencv_photo
+OPENCV += -lopencv_videostab
+OPENCV += -lopencv_features2d
+OPENCV += -lopencv_plot
+OPENCV += -lopencv_xfeatures2d
+OPENCV += -lopencv_flann
+OPENCV += -lopencv_quality
+OPENCV += -lopencv_ximgproc
+OPENCV += -lopencv_fuzzy
+OPENCV += -lopencv_rapid
+OPENCV += -lopencv_xobjdetect
+OPENCV += -lopencv_gapi
+OPENCV += -lopencv_reg
+OPENCV += -lopencv_xphoto
+OPENCV += -lopencv_hfs
+OPENCV += -lopencv_rgbd
 
+.PHONY: all clean
 $(PROG) : $(SRCS)
 	$(CC) $(CFLAGS) -o $(PROG) $(SRCS) $(OPENCV)
 
-all:
-	$(PROG)
+all: $(PROG)
 
-
-# g++ "-ID:\\Misc\\GenesisTools\\opencv_lib\\include" -O0 -g3 -Wall -c -fmessage-length=0 -o HK_Test_3.o "..\\HK_Test_3.cpp" 
-# g++ "-LD:\\Misc\\GenesisTools\\opencv_lib\\x64\\mingw\\lib" -o HK_Test_3.exe HK_Test_3.o -lopencv_aruco451 -lopencv_bgsegm451 -lopencv_bioinspired451 -lopencv_calib3d451 -lopencv_ccalib451 -lopencv_core451 -lopencv_datasets451 -lopencv_dnn_objdetect451 -lopencv_dnn_superres451 -lopencv_dnn451 -lopencv_dpm451 -lopencv_face451 -lopencv_features2d451 -lopencv_flann451 -lopencv_fuzzy451 -lopencv_gapi451 -lopencv_hfs451 -lopencv_highgui451 -lopencv_imgcodecs451 -lopencv_imgproc451 -lopencv_videoio451 
+clean:
+	rm -f $(OBJS) $(PROG)

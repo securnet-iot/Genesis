@@ -8,6 +8,8 @@
 		}
 	],
 	"settings": {
-		"editor.formatOnPaste": true
+		"editor.formatOnPaste": true,
+		"editor.formatOnSave": true,
+		"terminal.explorerKind": "external"
 	}
 }
