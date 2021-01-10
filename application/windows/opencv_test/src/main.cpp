@@ -8,7 +8,7 @@
 using namespace cv;
 
 int main() {
-  printf("Hari Kapparapu\n");
+  printf("Git Branch: %s\n", GIT_BRANCH);
   printf("I am here\n");
 
   printf("I am here [%d]\n", __LINE__);
