@@ -7,24 +7,28 @@
 
 namespace hal {
 
-VideoCameraSensor::VideoCameraSensor(const VideoCameraPort port)
-    : camera_{port}, port_{port}, is_camera_opened_{false} {
+WindowsVideoCamera::WindowsVideoCamera(const Port port)
+    : camera_{static_cast<uint8_t>(port)},
+      port_{port},
+      frame_{0},
+      is_camera_opened_{false} {
   if (camera_.isOpened()) {
     is_camera_opened_ = true;
   }
 }
 
-VideoCameraFrame VideoCameraSensor::GetFrame(void) {
+WindowsVideoCameraFrame WindowsVideoCamera::GetFrame(void) {
   if (is_camera_opened_) {
-    return camera_;
+    camera_ >> frame_;
   } else {
     printf("Camera Not Opened");
   }
+  return frame_;
 }
 
-VideoCameraFrame VideoCameraSensor::ShowFrame(void) {
+void WindowsVideoCamera::ShowFrame(WindowsVideoCameraFrame frame) {
   if (is_camera_opened_) {
-    ::cv::imshow("Camera Frame of Port - %d", port_);
+    ::cv::imshow("Camera Frame", frame);
   } else {
     printf("Camera Not Opened");
   }

@@ -5,7 +5,8 @@ OPENCV_PATH := $(ROOT_PATH)/hal/$(OPENCV_ID)
 
 ### GLOBAL SETTINGS APPLICABLE TO ALL TARGETS #################################
 
-APP_DEPLIBS += opencv_aruco opencv_highgui opencv_saliency opencv_bgsegm opencv_img_hash \
+APP_DEPLIBS = opencv_aruco \
+								opencv_highgui opencv_saliency opencv_bgsegm opencv_img_hash \
 								opencv_shape opencv_imgcodecs opencv_stereo opencv_calib3d opencv_imgproc \
 								opencv_stitching opencv_ccalib opencv_intensity_transform opencv_structured_light \
 								opencv_core opencv_line_descriptor opencv_superres opencv_datasets opencv_mcc \
@@ -16,10 +17,11 @@ APP_DEPLIBS += opencv_aruco opencv_highgui opencv_saliency opencv_bgsegm opencv_
 								opencv_ximgproc opencv_fuzzy opencv_rapid opencv_xobjdetect opencv_gapi opencv_reg \
 								opencv_xphoto opencv_hfs opencv_rgbd
 
-APP_DEPLIBS_PATH += $(GENESIS_TOOLS_PATH)\msys64\mingw64\lib
+APP_DEPLIBS_PATH = $(GENESIS_TOOLS_PATH)\msys64\mingw64\lib
 
 INCDIRS += \
-  $(GENESIS_TOOLS_PATH)\msys64\mingw64\include\opencv4 \
+  $(GENESIS_TOOLS_PATH)/msys64/mingw64/include/opencv4 \
+	$(ROOT_PATH)/hal/interface/inc \
   $(OPENCV_PATH)/inc
 
 ### TARGET AND TARGET OPTIONS #################################################

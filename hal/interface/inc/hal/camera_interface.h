@@ -6,17 +6,16 @@ namespace hal {
 template <typename T>
 class CameraInterface {
  public:
-  using ParamType T;
+  using ParamType = T;
 
-  virtual CameraInterface();
-  ~CameraInterface();
+  virtual ~CameraInterface();
 
   virtual ParamType GetFrame() = 0;
-  virtual ParamType ShowFrame() = 0;
+  virtual void ShowFrame(ParamType frame) = 0;
 };
 
 template <typename T>
-inline CameraInterface::~CameraInterface() {}
+inline CameraInterface<T>::~CameraInterface() {}
 
 }  // namespace hal
 

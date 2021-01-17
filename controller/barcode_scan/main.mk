@@ -1,5 +1,5 @@
 ### EXPORTABLE DEFINITIONS - AVAILABLE TO DEPENDENT MAKEFILES #################
-BARCODE_CONTROLLER_PATH := $(PLATFORM_CFG_PATH)/controller/barcode
+BARCODE_SCAN_CONTROLLER_PATH := $(PLATFORM_CFG_PATH)/controller/barcode
 
 CONTROLLER_ID := barcode_scan
 
@@ -8,9 +8,12 @@ CONTROLLER_ID := barcode_scan
 
 ### SOURCES AND SOURCES OPTIONS ###############################################
 SOURCES := \
-  $(wildcard $(BARCODE_CONTROLLER_PATH)/src/*.cpp)
+  $(wildcard $(BARCODE_SCAN_CONTROLLER_PATH)/src/*.cpp)
 
 ### GLOBAL SETTINGS APPLICABLE TO ALL TARGETS #################################
 INCDIRS += \
-  $(BARCODE_CONTROLLER_PATH)/inc \
+  $(BARCODE_SCAN_CONTROLLER_PATH)/inc \
+	$(ROOT_PATH)/hal/interface/inc \
   $(GENESIS_TOOLS_PATH)/opencv_win/build/install/include
+
+TARGET := libcontroller_$(CONTROLLER_ID).a

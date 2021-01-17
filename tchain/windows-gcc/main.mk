@@ -19,6 +19,7 @@ endif
 $(info ************ BUILD CONFIGURATIONS ************)
 $(call PRINT_INFO, ROOT_PATH)
 $(call PRINT_INFO, PLATFORM)
+$(call PRINT_INFO, GENESIS_TOOLS_PATH)
 $(call PRINT_INFO, BUILD_TYPE)
 $(call PRINT_INFO, OPTIMIZATION_LEVEL)
 $(info **********************************************)

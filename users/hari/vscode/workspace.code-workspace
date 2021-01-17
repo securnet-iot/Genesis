@@ -10,6 +10,9 @@
 	"settings": {
 		"editor.formatOnPaste": true,
 		"editor.formatOnSave": true,
-		"terminal.explorerKind": "external"
+		"terminal.explorerKind": "external",
+		"files.associations": {
+			"iostream": "cpp"
+		}
 	}
 }
