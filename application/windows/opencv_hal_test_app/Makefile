@@ -1,6 +1,7 @@
 .PHONY: all clean
 
 all:
+	cp -f ./../../../hal/opencv_windows/lib/* bin/
 	make -r -s -f ../../../library/boilermake/Makefile -j
 
 clean:
