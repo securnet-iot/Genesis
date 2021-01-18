@@ -17,11 +17,11 @@ WindowsVideoCamera::WindowsVideoCamera(const Port port)
   }
 }
 
-WindowsVideoCameraFrame WindowsVideoCamera::GetFrame(void) {
+ReturnResult<WindowsVideoCameraFrame> WindowsVideoCamera::GetFrame(void) {
   if (is_camera_opened_) {
     camera_ >> frame_;
   } else {
-    printf("Camera Not Opened");
+    return -1;
   }
   return frame_;
 }
@@ -33,5 +33,7 @@ void WindowsVideoCamera::ShowFrame(WindowsVideoCameraFrame frame) {
     printf("Camera Not Opened");
   }
 }
+
+// void WindowsVideoCamera::IsAvailable() { return is_camera_opened_; }
 
 }  // namespace hal

@@ -1,6 +1,6 @@
 APP_ID := test_1_app
 
-TGT_DEPLIBS = tchain_$(TCHAIN_ID) $(OPENCV_ID) $(APP_DEPLIBS)
+TGT_DEPLIBS = tchain_$(TCHAIN_ID) $(OPENCV_ID) $(ETC_ID) $(APP_DEPLIBS)
 # controller_barcode_scan
 TGT_DEPLIBS_PATH = bin $(APP_DEPLIBS_PATH)
 

@@ -14,7 +14,11 @@ int main() {
 
   ::hal::WindowsVideoCamera video_cam{::hal::WindowsVideoCamera::Port::PORT_1};
 
-  video_cam.ShowFrame(video_cam.GetFrame());
+  // if (video_cam.IsAvailable()) {
+  if (video_cam.GetFrame().IsValid()) {
+    video_cam.ShowFrame(video_cam.GetFrame().Value());
+  }
+  // }
 
   while (1) {
     if (::cv::waitKey(30) >= 0) {

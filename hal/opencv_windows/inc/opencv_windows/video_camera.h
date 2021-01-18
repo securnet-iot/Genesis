@@ -24,8 +24,11 @@ class WindowsVideoCamera : public CameraInterface<WindowsVideoCameraFrame> {
 
   WindowsVideoCamera(const Port port);
 
-  virtual WindowsVideoCameraFrame GetFrame() override;
+  virtual ReturnResult<WindowsVideoCameraFrame> GetFrame() override;
   virtual void ShowFrame(WindowsVideoCameraFrame frame) override;
+  // virtual bool IsAvailable() override;
+  // void SaveFrameAsJpeg(char* file_name, char* file_path,
+  //                      WindowsVideoCameraFrame frame);
 
  private:
   ::cv::VideoCapture camera_;
