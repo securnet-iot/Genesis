@@ -1,19 +1,19 @@
 #ifndef HAL_OPENCV_WINDOWS_VIDEO_CAMERA_H
 #define HAL_OPENCV_WINDOWS_VIDEO_CAMERA_H
 
-#include <opencv2/highgui/highgui.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/opencv.hpp>
+// #include <opencv2/highgui/highgui.hpp>
+// #include <opencv2/imgproc/imgproc.hpp>
+// #include <opencv2/opencv.hpp>
 #include <opencv2/video.hpp>
 #include <opencv2/videoio/videoio.hpp>
 
-#include "hal/camera_interface.h"
+#include "hal/frame_interface.h"
 
 namespace hal {
 
 using WindowsVideoCameraFrame = cv::Mat;
 
-class WindowsVideoCamera : public CameraInterface<WindowsVideoCameraFrame> {
+class WindowsVideoCamera : public FrameInterface<WindowsVideoCameraFrame> {
  public:
   enum class Port {
     PORT_0 = 0,
@@ -40,4 +40,4 @@ class WindowsVideoCamera : public CameraInterface<WindowsVideoCameraFrame> {
 
 }  // namespace hal
 
-#endif /* OPENCV_WINDOWS_VIDEO_H */
+#endif /* HAL_OPENCV_WINDOWS_VIDEO_CAMERA_H */

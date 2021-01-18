@@ -11,12 +11,13 @@ APP_DEPLIBS += opencv_aruco \
 								opencv_phase_unwrapping opencv_videoio opencv_face opencv_photo opencv_videostab \
 								opencv_features2d opencv_plot opencv_xfeatures2d opencv_flann opencv_quality \
 								opencv_ximgproc opencv_fuzzy opencv_rapid opencv_xobjdetect opencv_gapi opencv_reg \
-								opencv_xphoto opencv_hfs opencv_rgbd
+								opencv_xphoto opencv_hfs opencv_rgbd z zbar zstd zzip zzipfseeko zzipmmapped zzipwrap
 
 APP_DEPLIBS_PATH += $(GENESIS_TOOLS_PATH)\msys64\mingw64\lib
 
 INCDIRS += \
   $(GENESIS_TOOLS_PATH)/msys64/mingw64/include/opencv4 \
+  $(GENESIS_TOOLS_PATH)/msys64/mingw64/include/zbar \
 	$(ROOT_PATH)/etc/inc \
 	$(ROOT_PATH)/hal/interface/inc \
   $(OPENCV_PATH)/inc
