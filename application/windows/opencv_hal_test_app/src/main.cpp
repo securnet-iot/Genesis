@@ -14,11 +14,13 @@ int main() {
 
   ::hal::WindowsVideoCamera video_cam{::hal::WindowsVideoCamera::Port::PORT_1};
 
-  // if (video_cam.IsAvailable()) {
-  if (video_cam.GetFrame().IsValid()) {
-    video_cam.ShowFrame(video_cam.GetFrame().Value());
+  ReturnResult<::hal::WindowsVideoCameraFrame> frame_return{
+      video_cam.GetFrame()};
+
+  if (frame_return.IsValid()) {
+    video_cam.ShowFrame(frame_return.Value());
+    video_cam.SaveFrameAsJpg("bin", "Hari", frame_return.Value());
   }
-  // }
 
   while (1) {
     if (::cv::waitKey(30) >= 0) {

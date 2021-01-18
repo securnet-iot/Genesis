@@ -7,6 +7,8 @@
 
 namespace hal {
 
+using namespace cv;
+
 WindowsVideoCamera::WindowsVideoCamera(const Port port)
     : camera_{static_cast<uint8_t>(port)},
       port_{port},
@@ -19,21 +21,37 @@ WindowsVideoCamera::WindowsVideoCamera(const Port port)
 
 ReturnResult<WindowsVideoCameraFrame> WindowsVideoCamera::GetFrame(void) {
   if (is_camera_opened_) {
-    camera_ >> frame_;
+    camera_.read(frame_);
   } else {
     return -1;
   }
   return frame_;
 }
 
-void WindowsVideoCamera::ShowFrame(WindowsVideoCameraFrame frame) {
+ReturnResult<void> WindowsVideoCamera::ShowFrame(
+    WindowsVideoCameraFrame frame) {
   if (is_camera_opened_) {
-    ::cv::imshow("Camera Frame", frame);
+    imshow("Camera Frame", frame);
+    return {};
   } else {
-    printf("Camera Not Opened");
+    return -1;
   }
 }
 
-// void WindowsVideoCamera::IsAvailable() { return is_camera_opened_; }
+ReturnResult<bool> WindowsVideoCamera::IsAvailable() {
+  return is_camera_opened_;
+}
+
+ReturnResult<void> WindowsVideoCamera::SaveFrameAsJpg(
+    ::std::string file_path, ::std::string file_name,
+    WindowsVideoCameraFrame frame) {
+  ::std::string file_path_name = file_path + "/" + file_name + ".jpg";
+  printf(file_path_name.c_str());
+  if (imwrite(file_path_name, frame)) {
+    return {};
+  } else {
+    return -1;
+  }
+}
 
 }  // namespace hal

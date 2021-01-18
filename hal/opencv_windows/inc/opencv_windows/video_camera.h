@@ -25,10 +25,11 @@ class WindowsVideoCamera : public CameraInterface<WindowsVideoCameraFrame> {
   WindowsVideoCamera(const Port port);
 
   virtual ReturnResult<WindowsVideoCameraFrame> GetFrame() override;
-  virtual void ShowFrame(WindowsVideoCameraFrame frame) override;
-  // virtual bool IsAvailable() override;
-  // void SaveFrameAsJpeg(char* file_name, char* file_path,
-  //                      WindowsVideoCameraFrame frame);
+  virtual ReturnResult<void> ShowFrame(WindowsVideoCameraFrame frame) override;
+  virtual ReturnResult<bool> IsAvailable() override;
+  virtual ReturnResult<void> SaveFrameAsJpg(
+      ::std::string file_path, ::std::string file_name,
+      WindowsVideoCameraFrame frame) override;
 
  private:
   ::cv::VideoCapture camera_;

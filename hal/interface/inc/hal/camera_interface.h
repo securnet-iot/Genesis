@@ -8,13 +8,16 @@ namespace hal {
 template <typename T>
 class CameraInterface {
  public:
-  using ParamType = T;
+  using Frame = T;
 
   virtual ~CameraInterface();
 
-  virtual ReturnResult<ParamType> GetFrame() = 0;
-  virtual void ShowFrame(ParamType frame) = 0;
-  // virtual bool IsAvailable() = 0;
+  virtual ReturnResult<Frame> GetFrame() = 0;
+  virtual ReturnResult<void> ShowFrame(Frame frame) = 0;
+  virtual ReturnResult<bool> IsAvailable() = 0;
+  virtual ReturnResult<void> SaveFrameAsJpg(::std::string file_path,
+                                            ::std::string file_name,
+                                            Frame frame);
 };
 
 template <typename T>
