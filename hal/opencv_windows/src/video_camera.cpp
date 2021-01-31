@@ -7,26 +7,49 @@
 
 namespace hal {
 
-VideoCameraSensor::VideoCameraSensor(const VideoCameraPort port)
-    : camera_{port}, port_{port}, is_camera_opened_{false} {
+using namespace cv;
+
+WindowsVideoCamera::WindowsVideoCamera(const Port port)
+    : camera_{static_cast<uint8_t>(port)},
+      port_{port},
+      frame_{0},
+      is_camera_opened_{false} {
   if (camera_.isOpened()) {
     is_camera_opened_ = true;
   }
 }
 
-VideoCameraFrame VideoCameraSensor::GetFrame(void) {
+ReturnResult<VideoFrame> WindowsVideoCamera::GetFrame(void) {
   if (is_camera_opened_) {
-    return camera_;
+    camera_.read(frame_);
   } else {
-    printf("Camera Not Opened");
+    return -1;
+  }
+  return frame_;
+}
+
+ReturnResult<void> WindowsVideoCamera::ShowFrame(VideoFrame frame) {
+  if (is_camera_opened_) {
+    imshow("Camera Frame", frame);
+    return {};
+  } else {
+    return -1;
   }
 }
 
-VideoCameraFrame VideoCameraSensor::ShowFrame(void) {
-  if (is_camera_opened_) {
-    ::cv::imshow("Camera Frame of Port - %d", port_);
+ReturnResult<bool> WindowsVideoCamera::IsAvailable() {
+  return is_camera_opened_;
+}
+
+ReturnResult<void> WindowsVideoCamera::SaveFrameAsJpg(::std::string file_path,
+                                                      ::std::string file_name,
+                                                      VideoFrame frame) {
+  ::std::string file_path_name = file_path + "/" + file_name + ".jpg";
+  printf(file_path_name.c_str());
+  if (imwrite(file_path_name, frame)) {
+    return {};
   } else {
-    printf("Camera Not Opened");
+    return -1;
   }
 }
 
