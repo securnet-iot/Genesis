@@ -1,7 +1,8 @@
 APP_ID := test_1_app
 
-TGT_DEPLIBS = tchain_$(TCHAIN_ID) $(OPENCV_ID) $(ETC_ID) $(APP_DEPLIBS)
-# controller_barcode_scan
+TGT_DEPLIBS = tchain_$(TCHAIN_ID) $(OPENCV_ID) $(ETC_ID) \
+						  $(ENGINE_BARCODE_SCANNER_ID) $(APP_DEPLIBS)
+
 TGT_DEPLIBS_PATH = bin $(APP_DEPLIBS_PATH)
 
 TARGET := $(APP_ID).exe
@@ -25,7 +26,7 @@ TGT_POSTMAKE := \
 TGT_PREREQS := $(addsuffix .a,$(addprefix lib,$(TGT_DEPLIBS)))
 
 INCDIRS += \
-	$(ROOT_PATH)/hal/opencv_windows/inc \
+	$(ROOT_PATH)/engine/barcode_scanner/inc \
 	$(DIR)/inc
 
 SOURCES := \

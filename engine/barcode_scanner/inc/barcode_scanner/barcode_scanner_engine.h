@@ -12,12 +12,16 @@ class BarcodeScannerEngine {
       ::hal::FrameInterface<VideoFrame> &frame,
       ::hal::SensorInterface<BarcodeInfo, VideoFrame> &barcode_scanner);
 
- private:
+  ~BarcodeScannerEngine();
+
   void ScanStart();
 
+ private:
   ::hal::FrameInterface<VideoFrame> &frame_;
   ::hal::SensorInterface<BarcodeInfo, VideoFrame> &barcode_scanner_;
 };
+
+inline BarcodeScannerEngine::~BarcodeScannerEngine() {}
 
 }  // namespace engine
 

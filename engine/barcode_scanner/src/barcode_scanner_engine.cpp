@@ -1,9 +1,14 @@
-#include "barcode_scan/barcode_scanner_engine.h"
+#include "barcode_scanner/barcode_scanner_engine.h"
+
+#include <unistd.h>
+
+#include <iostream>
+#include <opencv2/highgui/highgui.hpp>
 
 namespace engine {
 
 BarcodeScannerEngine::BarcodeScannerEngine(
-    ::hal::CameraInterface<VideoFrame> &frame,
+    ::hal::FrameInterface<VideoFrame> &frame,
     ::hal::SensorInterface<BarcodeInfo, VideoFrame> &barcode_scanner)
     : frame_{frame}, barcode_scanner_{barcode_scanner} {}
 

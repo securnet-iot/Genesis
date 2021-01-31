@@ -4,7 +4,6 @@
 #include <opencv2/video.hpp>
 #include <opencv2/videoio/videoio.hpp>
 
-#include "etc/return_types.h"
 #include "hal/frame_interface.h"
 
 namespace hal {

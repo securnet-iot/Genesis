@@ -18,7 +18,8 @@
 			"*.ipp": "cpp",
 			"string": "cpp",
 			"*.idl": "cpp",
-			"xlocmon": "cpp"
+			"xlocmon": "cpp",
+			"iosfwd": "cpp"
 		}
 	}
 }
