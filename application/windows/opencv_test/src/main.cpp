@@ -8,11 +8,12 @@
 using namespace cv;
 
 int main() {
-  printf("Hari Kapparapu\n");
+  printf(GIT_BRANCH);
+  // printf("dev.rajesh\n");
   printf("I am here\n");
 
   printf("I am here [%d]\n", __LINE__);
-  VideoCapture cap(1);
+  VideoCapture cap(0);
 
   if (!cap.isOpened()) {
     printf("Can't open Camera\n");
