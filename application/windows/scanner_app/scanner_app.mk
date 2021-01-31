@@ -1,4 +1,4 @@
-APP_ID := test_1_app
+APP_ID := scanner_app
 
 TGT_DEPLIBS = tchain_$(TCHAIN_ID) $(OPENCV_ID) $(ETC_ID) \
 						  $(ENGINE_BARCODE_SCANNER_ID) $(APP_DEPLIBS)
