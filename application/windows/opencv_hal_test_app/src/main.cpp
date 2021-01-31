@@ -18,16 +18,13 @@ int main() {
   ::hal::WindowsBarcodeScanner barcode_scanner{};
 
   while (1) {
-    ReturnResult<::hal::WindowsVideoCameraFrame> frame_return{
-        video_cam.GetFrame()};
+    ReturnResult<VideoFrame> frame_return{video_cam.GetFrame()};
 
     if (frame_return.IsValid()) {
       video_cam.ShowFrame(frame_return.Value());
-      // video_cam.SaveFrameAsJpg("bin", "Hari", frame_return.Value());
 
       barcode_scanner.SetValue(frame_return.Value());
-      ReturnResult<::hal::WindowsBarcode> info_exepcted{
-          barcode_scanner.GetValue()};
+      ReturnResult<BarcodeInfo> info_exepcted{barcode_scanner.GetValue()};
 
       if (info_exepcted.IsValid()) {
         ::std::cout << ::std::endl
@@ -35,12 +32,15 @@ int main() {
         for (int count = 0; count < info_exepcted.Value().count; count++) {
           ::std::cout << ::std::to_string(count) + ":  "
                       << "Type: " << info_exepcted.Value().type[count]
+                      << "        "
                       << "Data: " << info_exepcted.Value().data[count]
                       << ::std::endl;
         }
+
+        video_cam.SaveFrameAsJpg("bin", "ScannedImage", frame_return.Value());
       }
 
-      usleep(1000);
+      usleep(200000);
     }
 
     if (::cv::waitKey(30) >= 0) {

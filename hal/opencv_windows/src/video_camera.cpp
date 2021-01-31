@@ -19,7 +19,7 @@ WindowsVideoCamera::WindowsVideoCamera(const Port port)
   }
 }
 
-ReturnResult<WindowsVideoCameraFrame> WindowsVideoCamera::GetFrame(void) {
+ReturnResult<VideoFrame> WindowsVideoCamera::GetFrame(void) {
   if (is_camera_opened_) {
     camera_.read(frame_);
   } else {
@@ -28,8 +28,7 @@ ReturnResult<WindowsVideoCameraFrame> WindowsVideoCamera::GetFrame(void) {
   return frame_;
 }
 
-ReturnResult<void> WindowsVideoCamera::ShowFrame(
-    WindowsVideoCameraFrame frame) {
+ReturnResult<void> WindowsVideoCamera::ShowFrame(VideoFrame frame) {
   if (is_camera_opened_) {
     imshow("Camera Frame", frame);
     return {};
@@ -42,9 +41,9 @@ ReturnResult<bool> WindowsVideoCamera::IsAvailable() {
   return is_camera_opened_;
 }
 
-ReturnResult<void> WindowsVideoCamera::SaveFrameAsJpg(
-    ::std::string file_path, ::std::string file_name,
-    WindowsVideoCameraFrame frame) {
+ReturnResult<void> WindowsVideoCamera::SaveFrameAsJpg(::std::string file_path,
+                                                      ::std::string file_name,
+                                                      VideoFrame frame) {
   ::std::string file_path_name = file_path + "/" + file_name + ".jpg";
   printf(file_path_name.c_str());
   if (imwrite(file_path_name, frame)) {

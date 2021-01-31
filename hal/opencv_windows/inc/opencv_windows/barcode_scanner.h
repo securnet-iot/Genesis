@@ -14,32 +14,20 @@
 
 namespace hal {
 
-class WindowsBarcodeScanner;
-
-typedef struct {
-  int32_t count;
-
-  ::std::string type[10];  // WindowsBarcodeScanner::MAX_SCAN_CODES];
-  ::std::string data[10];  // WindowsBarcodeScanner::MAX_SCAN_CODES];
-
-} WindowsBarcode;
-
-class WindowsBarcodeScanner
-    : public SensorInterface<WindowsBarcode, WindowsVideoCameraFrame> {
+class WindowsBarcodeScanner : public SensorInterface<BarcodeInfo, VideoFrame> {
  public:
   WindowsBarcodeScanner();
 
-  virtual ReturnResult<WindowsBarcode> GetValue(void) override;
-  virtual ReturnResult<WindowsBarcode> GetMaxValue(void) override;
-  virtual ReturnResult<WindowsBarcode> GetMinValue(void) override;
-  virtual ReturnResult<void> SetValue(
-      const WindowsVideoCameraFrame param) override;
+  virtual ReturnResult<BarcodeInfo> GetValue(void) override;
+  virtual ReturnResult<BarcodeInfo> GetMaxValue(void) override;
+  virtual ReturnResult<BarcodeInfo> GetMinValue(void) override;
+  virtual ReturnResult<void> SetValue(const VideoFrame param) override;
 
   const uint8_t MAX_SCAN_CODES = 10;
 
  private:
-  WindowsVideoCameraFrame frame_;
-  WindowsBarcode decoded_objects_;
+  VideoFrame frame_;
+  BarcodeInfo decoded_objects_;
   ::zbar::ImageScanner scanner_;
 };
 

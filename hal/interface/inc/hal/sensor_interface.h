@@ -2,6 +2,7 @@
 #define HAL_SENSOR_INTERFACE_H
 
 #include "etc/return_result.h"
+#include "etc/return_types.h"
 
 namespace hal {
 
