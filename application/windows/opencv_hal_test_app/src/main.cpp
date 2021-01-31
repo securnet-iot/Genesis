@@ -1,5 +1,6 @@
 #include <conio.h>
 #include <stdio.h>
+#include <unistd.h>
 
 #include <iostream>
 #include <opencv2/highgui/highgui.hpp>
@@ -19,12 +20,27 @@ int main() {
   while (1) {
     ReturnResult<::hal::WindowsVideoCameraFrame> frame_return{
         video_cam.GetFrame()};
+
     if (frame_return.IsValid()) {
       video_cam.ShowFrame(frame_return.Value());
       // video_cam.SaveFrameAsJpg("bin", "Hari", frame_return.Value());
 
       barcode_scanner.SetValue(frame_return.Value());
-      barcode_scanner.GetValue();
+      ReturnResult<::hal::WindowsBarcode> info_exepcted{
+          barcode_scanner.GetValue()};
+
+      if (info_exepcted.IsValid()) {
+        ::std::cout << ::std::endl
+                    << "****** Scanned Info ******" << ::std::endl;
+        for (int count = 0; count < info_exepcted.Value().count; count++) {
+          ::std::cout << ::std::to_string(count) + ":  "
+                      << "Type: " << info_exepcted.Value().type[count]
+                      << "Data: " << info_exepcted.Value().data[count]
+                      << ::std::endl;
+        }
+      }
+
+      usleep(1000);
     }
 
     if (::cv::waitKey(30) >= 0) {
