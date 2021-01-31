@@ -6,19 +6,13 @@
 
 namespace hal {
 
-// using namespace cv;
-// using namespace std;
-// using namespace zbar;
-
 WindowsBarcodeScanner::WindowsBarcodeScanner() : frame_{} {
   scanner_.set_config(::zbar::ZBAR_NONE, ::zbar::ZBAR_CFG_ENABLE, 1);
 }
 
-WindowsBarcode decoded_objects;
-
-ReturnResult<WindowsBarcode> WindowsBarcodeScanner::GetValue(void) {
+ReturnResult<BarcodeInfo> WindowsBarcodeScanner::GetValue(void) {
   // Convert image to grayscale
-  WindowsVideoCameraFrame img_gray;
+  VideoFrame img_gray;
   ::cv::cvtColor(frame_, img_gray, ::cv::COLOR_BGR2GRAY);
 
   // Wrap image data in a zbar image
@@ -54,16 +48,15 @@ ReturnResult<WindowsBarcode> WindowsBarcodeScanner::GetValue(void) {
   return decoded_objects_;
 }
 
-ReturnResult<WindowsBarcode> WindowsBarcodeScanner::GetMaxValue(void) {
+ReturnResult<BarcodeInfo> WindowsBarcodeScanner::GetMaxValue(void) {
   return -1;
 }
 
-ReturnResult<WindowsBarcode> WindowsBarcodeScanner::GetMinValue(void) {
+ReturnResult<BarcodeInfo> WindowsBarcodeScanner::GetMinValue(void) {
   return -1;
 }
 
-ReturnResult<void> WindowsBarcodeScanner::SetValue(
-    const WindowsVideoCameraFrame frame) {
+ReturnResult<void> WindowsBarcodeScanner::SetValue(const VideoFrame frame) {
   frame_ = frame;
 
   return 0;
