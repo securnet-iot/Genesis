@@ -10,13 +10,5 @@ int main() {
 
   BarcodeScannerEngine barcode_scanner_engine = {};
 
-  // ::hal::WindowsVideoCamera video_cam = {
-  //     ::hal::WindowsVideoCamera::Port::PORT_1};
-  // ::hal::WindowsBarcodeScanner barcode_scanner = {};
-  // ::engine::BarcodeScannerEngine scanner_engine = {video_cam,
-  // barcode_scanner};
-
-  // scanner_engine.ScanStart();
-
   printf("~~~~ Closed ...\n");
 }
