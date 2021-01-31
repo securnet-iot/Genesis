@@ -2,7 +2,6 @@ bin/
 build/
 *.vscode
 *.exe
-*.o
 *.a
 .vs
 *.out
